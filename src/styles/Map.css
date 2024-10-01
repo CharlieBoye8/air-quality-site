@@ -1,0 +1,13 @@
+.stats-map-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+  }
+  
+  .map, .stats {
+    background-color: #f0f0f0;
+    padding: 2rem;
+    width: 45%;
+    text-align: center;
+  }
+  

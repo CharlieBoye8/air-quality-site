@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import Welcome from './components/Welcome';
+import StatsMap from './components/Map';
+import Team from './components/Team';
+import LocationComparison from './components/Stats';
 
 function App() {
+  const [activeComponent, setActiveComponent] = useState('welcome'); // Default component is 'welcome'
+
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case 'welcome':
+        return <Welcome />;
+      case 'map':
+        return <StatsMap />;
+      case 'stats':
+        return <StatsMap />;
+      case 'team':
+        return <Team />;
+      case 'compare':
+        return <LocationComparison />;
+      default:
+        return <Welcome />;
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar setActiveComponent={setActiveComponent} />  {/* Pass down the state setter */}
+      {renderComponent()}  {/* Conditionally render the component based on activeComponent */}
     </div>
   );
 }

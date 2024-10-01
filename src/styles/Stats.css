@@ -1,0 +1,29 @@
+.location-comparison {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .locations {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem;
+  }
+  
+  .locations div {
+    font-size: 1.25rem;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    width: 20%;
+    border-radius: 5px;
+  }
+  
+  .compare-btn {
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
