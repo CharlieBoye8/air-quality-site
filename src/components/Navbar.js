@@ -4,7 +4,9 @@ import '../styles/Navbar.css';
 const Navbar = ({ setActiveComponent }) => {
   return (
     <nav className="navbar">
-      <div className="logo">LOGO</div>
+      <div className="logo">
+        <img src="../media/G.png" alt="Gettysburg College Logo"></img>
+      </div>
       <ul className="nav-links">
         <li onClick={() => setActiveComponent('welcome')}>About us</li>
         <li onClick={() => setActiveComponent('map')}>Map</li>
