@@ -1,11 +1,12 @@
 import React from 'react';
 import '../styles/Navbar.css';
+import logo from '../media/G.png';
 
 const Navbar = ({ setActiveComponent }) => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="../media/G.png" alt="Gettysburg College Logo"></img>
+        <img src={logo} alt="Gettysburg College Logo"></img>
       </div>
       <ul className="nav-links">
         <li onClick={() => setActiveComponent('welcome')}>About us</li>

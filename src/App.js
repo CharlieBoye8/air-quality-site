@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
 import StatsMap from './components/Map';
 import Team from './components/Team';
-import LocationComparison from './components/Stats';
+import Stats from './components/Stats';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('welcome'); // Default component is 'welcome'
@@ -20,7 +20,7 @@ function App() {
       case 'team':
         return <Team />;
       case 'compare':
-        return <LocationComparison />;
+        return <Stats />;
       default:
         return <Welcome />;
     }

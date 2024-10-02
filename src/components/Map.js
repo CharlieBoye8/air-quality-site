@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Map.css';
 
-const StatsMap = () => {
+const Map = () => {
   return (
     <section className="map-section">
       <div className="map">Map</div>
@@ -10,4 +10,4 @@ const StatsMap = () => {
   );
 }
 
-export default StatsMap;
+export default Map;
