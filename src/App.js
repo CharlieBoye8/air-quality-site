@@ -7,7 +7,7 @@ import Team from './components/Team';
 import Stats from './components/Stats';
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState('welcome'); // Default component is 'welcome'
+  const [activeComponent, setActiveComponent] = useState('welcome'); 
 
   const renderComponent = () => {
     switch (activeComponent) {
