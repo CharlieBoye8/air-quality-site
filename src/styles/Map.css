@@ -1,13 +1,24 @@
 .stats-map-section {
     display: flex;
-    justify-content: space-around;
-    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Adjust to match your theme */
   }
   
   .map, .stats {
     background-color: #f0f0f0;
     padding: 2rem;
-    width: 45%;
+    width: 100vw;
+    height: 100vh;
     text-align: center;
+  }
+  
+  .map img {
+    width: 450px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto; /* Centers the image horizontally */
   }
   

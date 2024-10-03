@@ -15,17 +15,15 @@ function App() {
     switch (activeComponent) {
       case 'welcome':
         return <Welcome />;
+      case 'aboutUs':
+        return <AboutUs />;
       case 'map':
         return <StatsMap />;
-      case 'stats':
-        return <StatsMap />;
-      case 'team':
-        return <Team />;
       case 'compare':
         return <Stats />;
-        case 'aboutUs':
-          return <AboutUs />;
-        case 'Login':
+      case 'team':
+        return <Team />;
+      case 'Login':
           return <Login />;
       default:
         return <Welcome />;

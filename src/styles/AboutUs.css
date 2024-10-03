@@ -1,14 +1,45 @@
-.AboutUs-section {
+.aboutUs {
   text-align: center;
   padding: 2rem;
+  height: 100vh;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-.AboutUs-section h1 {
+.aboutUs h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: #4CAF50;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.AboutUs-section p {
+.iconRow {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+}
+
+.iconBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.iconBlock p {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: bold;
+}
+
+.abtText {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.abtText p {
   font-size: 1.25rem;
-  margin-bottom: 2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-family: 'Roboto', sans-serif;
 }

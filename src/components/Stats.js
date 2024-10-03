@@ -3,17 +3,37 @@ import '../styles/Stats.css';
 
 const LocationComparison = () => {
   return (
-    <section className="Stats">
-      <h2>Compare Locations</h2>
-      <div className="DiffLoc">
-        <div>Location 1</div>
-        <div>Location 2</div>
-        <div>Location 3</div>
-        <div>Location 4</div>
+    <section className="location-comparison">
+      <h2>Compare Air Quality Between Locations</h2>
+      <div className="locations">
+        <div className="location-picker">
+          <h3>Location 1</h3>
+          <select>
+            <option value="">Select Location</option>
+            <option value="location1">West Building</option>
+            <option value="location2">Gettysburg Hotel</option>
+            <option value="location3">Gettysburger</option>
+            {/* Add more locations as needed */}
+          </select>
+        </div>
+        <div className="location-picker">
+          <h3>Location 2</h3>
+          <select>
+            <option value="">Select Location</option>
+            <option value="location1">West Building</option>
+            <option value="location2">Gettysburg Hotel</option>
+            <option value="location3">Gettysburger</option>
+            {/* Add more locations as needed */}
+          </select>
+        </div>
       </div>
       <button className="compare-btn">Compare</button>
+
+      <div className="graph-placeholder">
+        <p>Graph showing comparison will be displayed here.</p>
+      </div>
     </section>
   );
-}
+};
 
 export default LocationComparison;
