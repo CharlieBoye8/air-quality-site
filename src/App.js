@@ -5,6 +5,8 @@ import Welcome from './components/Welcome';
 import StatsMap from './components/Map';
 import Team from './components/Team';
 import Stats from './components/Stats';
+import AboutUs from './components/AboutUs';
+import Login from './components/Login';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('welcome'); 
@@ -21,6 +23,10 @@ function App() {
         return <Team />;
       case 'compare':
         return <Stats />;
+        case 'aboutUs':
+          return <AboutUs />;
+        case 'Login':
+          return <Login />;
       default:
         return <Welcome />;
     }

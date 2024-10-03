@@ -6,17 +6,17 @@ const Navbar = ({ setActiveComponent }) => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src={logo} alt="Gettysburg College Logo"></img>
+        <img onClick={() => setActiveComponent('welcome')} src={logo} alt="Gettysburg College Logo"></img>
       </div>
       <ul className="nav-links">
-        <li onClick={() => setActiveComponent('welcome')}>About us</li>
+        <li onClick={() => setActiveComponent('aboutUs')}>About us</li>
         <li onClick={() => setActiveComponent('map')}>Map</li>
         <li onClick={() => setActiveComponent('stats')}>Stats</li>
         <li onClick={() => setActiveComponent('compare')}>Compare</li>
         <li onClick={() => setActiveComponent('team')}>Team</li>
-        <li>Login</li>
+        <li>Try it!</li>
       </ul>
-      <button className="try-it-btn" onClick={() => setActiveComponent('welcome')}>Try it!</button>
+      <button className="login-btn" onClick={() => setActiveComponent('Login')}>Login</button>
     </nav>
   );
 }
