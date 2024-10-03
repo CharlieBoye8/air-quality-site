@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/Stats.css';
+import '../styles/Compare.css';
 
-const LocationComparison = () => {
+const Compare = () => {
   return (
     <section className="location-comparison">
       <h2>Compare Air Quality Between Locations</h2>
@@ -13,7 +13,6 @@ const LocationComparison = () => {
             <option value="location1">West Building</option>
             <option value="location2">Gettysburg Hotel</option>
             <option value="location3">Gettysburger</option>
-            {/* Add more locations as needed */}
           </select>
         </div>
         <div className="location-picker">
@@ -23,7 +22,6 @@ const LocationComparison = () => {
             <option value="location1">West Building</option>
             <option value="location2">Gettysburg Hotel</option>
             <option value="location3">Gettysburger</option>
-            {/* Add more locations as needed */}
           </select>
         </div>
       </div>
@@ -36,4 +34,4 @@ const LocationComparison = () => {
   );
 };
 
-export default LocationComparison;
+export default Compare;
