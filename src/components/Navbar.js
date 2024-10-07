@@ -15,7 +15,7 @@ const Navbar = ({ setActiveComponent }) => {
         <li onClick={() => setActiveComponent('compare')}>Compare</li>
         <li>Try it!</li>
       </ul>
-      <button className="login-btn" onClick={() => setActiveComponent('Login')}>Login</button>
+      <button className="login-btn" onClick={() => setActiveComponent('login')}>Login</button>
     </nav>
   );
 }
