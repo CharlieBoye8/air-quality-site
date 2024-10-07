@@ -13,7 +13,6 @@ const Navbar = ({ setActiveComponent }) => {
         <li onClick={() => setActiveComponent('map')}>Map</li>
         <li onClick={() => setActiveComponent('stats')}>Stats</li>
         <li onClick={() => setActiveComponent('compare')}>Compare</li>
-        <li onClick={() => setActiveComponent('team')}>Team</li>
         <li>Try it!</li>
       </ul>
       <button className="login-btn" onClick={() => setActiveComponent('Login')}>Login</button>

@@ -3,7 +3,6 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
 import Map from './components/Map';
-import Team from './components/Team';
 import Compare from './components/Compare';
 import AboutUs from './components/AboutUs';
 import Login from './components/Login';
@@ -26,8 +25,6 @@ function App() {
         break;
       case 'compare':
         return <Compare />;
-      case 'team':
-        return <Team />;
       case 'tryIt':
         // return <TryIt />;
         break;
