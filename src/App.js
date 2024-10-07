@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
-import Map from './components/Map';  // Leaflet map component
+import Map from './components/Map';
 import Team from './components/Team';
 import Compare from './components/Compare';
 import AboutUs from './components/AboutUs';
 import Login from './components/Login';
-// import TryIt from './components/TryIt';      // Assuming TryIt is another component
-// import Stats from './components/Stats';      // Assuming TryIt is another component
+// import TryIt from './components/TryIt';
+// import Stats from './components/Stats';
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState('welcome');  // Default component is 'welcome'
+  const [activeComponent, setActiveComponent] = useState('welcome');
 
-  // Function to render the active component based on state
   const renderComponent = () => {
     switch (activeComponent) {
       case 'welcome':
@@ -21,19 +20,21 @@ function App() {
       case 'aboutUs':
         return <AboutUs />;
       case 'map':
-        return <Map />;  // The Leaflet Map component is rendered here
-      // case 'stats':
-        // return <Stats />;  // Uncommented and now renders the Stats component
+        return <Map />;
+      case 'stats':
+        // return <Stats />;
+        break;
       case 'compare':
-        return <Compare />;  // Compare component
+        return <Compare />;
       case 'team':
         return <Team />;
-      // case 'tryIt':
-        // return <TryIt />;  // Renders TryIt component
+      case 'tryIt':
+        // return <TryIt />;
+        break;
       case 'login':
         return <Login />;
       default:
-        return <Welcome />;  // Fallback to Welcome
+        return <Welcome />;
     }
   };
 
