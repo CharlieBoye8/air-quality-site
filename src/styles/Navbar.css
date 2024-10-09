@@ -20,8 +20,23 @@
   
   .nav-links li {
     list-style: none;
-    color: white;
     cursor: pointer;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #ff9800;
+  }
+  
+  .login-btn a {
+    text-decoration: none;
+    color: white;
   }
   
   .login-btn {
@@ -31,5 +46,9 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
+  .login-btn:hover {
+    background-color: #0056b3;
+  }

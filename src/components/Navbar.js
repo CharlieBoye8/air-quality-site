@@ -1,23 +1,38 @@
-import React from 'react';
-import '../styles/Navbar.css';
-import logo from '../media/G.png';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
+import logo from "../media/G.png";
 
-const Navbar = ({ setActiveComponent }) => {
+const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img onClick={() => setActiveComponent('welcome')} src={logo} alt="Gettysburg College Logo"></img>
+        <Link to="/">
+          <img src={logo} alt="Gettysburg College Logo" />
+        </Link>
       </div>
       <ul className="nav-links">
-        <li onClick={() => setActiveComponent('aboutUs')}>About us</li>
-        <li onClick={() => setActiveComponent('map')}>Map</li>
-        <li onClick={() => setActiveComponent('stats')}>Stats</li>
-        <li onClick={() => setActiveComponent('compare')}>Compare</li>
-        <li>Try it!</li>
+        <li>
+          <Link to="/about-us">About us</Link>
+        </li>
+        <li>
+          <Link to="/map">Map</Link>
+        </li>
+        <li>
+          <Link to="/stats">Stats</Link>
+        </li>
+        <li>
+          <Link to="/compare">Compare</Link>
+        </li>
+        <li>
+          <Link to="/try-it">Try it!</Link>
+        </li>
       </ul>
-      <button className="login-btn" onClick={() => setActiveComponent('login')}>Login</button>
+      <button className="login-btn">
+        <Link to="/login">Login</Link>
+      </button>
     </nav>
   );
-}
+};
 
 export default Navbar;
