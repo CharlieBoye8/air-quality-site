@@ -1,8 +1,20 @@
 import React from 'react';
+import {useEffect,useState} from "react"
+import queryService from "../services/queryService"
 import '../styles/Compare.css';
 
 const Compare = () => {
-  return (
+
+  const [data, setData] = useState([]);
+
+    const fetchdata = async ()=>{
+        const res = await queryService.fetchAllData();
+        setData(res.data);
+    }
+    useEffect(()=>{
+        fetchdata();
+    },[]);
+  return (<div>
     <section className="location-comparison">
       <h2>Compare Air Quality Between Locations</h2>
       <div className="locations">
@@ -31,7 +43,24 @@ const Compare = () => {
         <p>Graph showing comparison will be displayed here.</p>
       </div>
     </section>
-  );
+
+
+
+<div>
+        This is home page
+        {data.length > 0 && (
+            <ul>
+                {data.map((item, index) => ( 
+                    <li key={index}>
+                        <p>Measurement of data point is {item._measurement}</p>
+                        <p>Field value is {item._field}</p>
+                        <span>value is {item._value}</span>
+                    </li>
+                ))}
+            </ul>
+        )}
+    </div>
+  </div>);
 };
 
 export default Compare;
