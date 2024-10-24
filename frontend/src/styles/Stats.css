@@ -1,0 +1,40 @@
+.stats-container {
+    margin: 50px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.stats-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.stats-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.stats-table tr:hover {
+    background-color: #ddd;
+}

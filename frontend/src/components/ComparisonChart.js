@@ -6,7 +6,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 const ComparisonChart = ({ location1Data, location2Data, location1Label, location2Label }) => {
   const data = {
-    labels: ['Time 1', 'Time 2', 'Time 3', 'Time 4'],
+    labels: ['Time 1', 'Time 2', 'Time 3', 'Time 4'], // Replace with actual times
     datasets: [
       {
         label: location1Label || 'Location 1',
@@ -23,7 +23,11 @@ const ComparisonChart = ({ location1Data, location2Data, location1Label, locatio
     ],
   };
 
-  return <Line data={data} />;
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', width: '100%', height: '400px' }}>
+      <Line data={data} />
+    </div>
+  );
 };
 
 export default ComparisonChart;

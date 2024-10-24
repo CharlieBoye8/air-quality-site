@@ -7,8 +7,8 @@ import Map from './components/Map';
 import Compare from './components/Compare';
 import AboutUs from './components/AboutUs';
 import Login from './components/Login';
+import Stats from './components/Stats';
 // import TryIt from './components/TryIt';
-// import Stats from './components/Stats';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/compare" element={<Compare />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/try-it" element={<TryIt />} /> */}
-          {/* <Route path="/stats" element={<Stats />} /> */}
+          <Route path="/stats" element={<Stats />} />
         </Routes>
       </Router>
     </div>
