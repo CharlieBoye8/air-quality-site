@@ -20,7 +20,7 @@ const Map = () => {
     MQ7: 10 + Math.random() * 490,
     MQ135: 10 + Math.random() * 190
   });
-  const [countdown, setCountdown] = useState(60);
+  const [countdown, setCountdown] = useState(10);
 
   useEffect(() => {
     if (activeLocation) {
@@ -33,7 +33,7 @@ const Map = () => {
               MQ7: 10 + Math.random() * 490,
               MQ135: 10 + Math.random() * 190
             });
-            return 60;
+            return 10;
           }
           return prevCountdown - 1;
         });

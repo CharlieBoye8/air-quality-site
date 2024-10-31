@@ -1,0 +1,112 @@
+.admin-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    /* background-color: #f9f9f9; */
+  }
+  
+  .admin-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    width: 80%;
+  }
+  
+  .admin-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .alert-center {
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+  
+  .alert-bubble {
+    background-color: #ff4d4f;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .resolve-button {
+    background-color: #ff9800;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .resolve-button:hover {
+    background-color: #e68900;
+  }
+  
+  .service-info {
+    margin-bottom: 2rem;
+  }
+  
+  .service-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  
+  .service-table th,
+  .service-table td {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .highlight {
+    background-color: #ffe5e5;
+    color: #ff4d4f;
+  }
+  
+  .notes-submit-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .notes-submit-cell input[type="text"] {
+    width: 70%;
+    padding: 0.4rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-service-button, .configure-button {
+    background-color: #28a745;
+    color: white;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-service-button:hover, .configure-button:hover {
+    background-color: #218838;
+  }
+  

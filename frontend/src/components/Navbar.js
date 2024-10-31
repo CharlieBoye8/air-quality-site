@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import logo from "../media/G.png";
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn }) => {
   return (
     <nav className="navbar">
       <div className="logo">
@@ -27,9 +27,16 @@ const Navbar = () => {
         <li>
           <Link to="/try-it">Try it!</Link>
         </li>
+        {isLoggedIn && (
+          <li>
+            <Link to="/admin">Admin Console</Link>
+          </li>
+        )}
       </ul>
       <button className="login-btn">
-        <Link to="/login">Login</Link>
+        <Link to="/login" style={{ color: "white", textDecoration: "none" }}>
+          Login
+        </Link>
       </button>
     </nav>
   );
