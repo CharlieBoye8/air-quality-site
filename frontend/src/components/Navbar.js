@@ -16,6 +16,9 @@ const Navbar = ({ isLoggedIn }) => {
           <Link to="/about-us">About Us</Link>
         </li>
         <li>
+          <Link to="/learn-more">Learn More</Link>
+        </li>
+        <li>
           <Link to="/map">Map</Link>
         </li>
         <li>

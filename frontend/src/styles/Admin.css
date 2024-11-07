@@ -1,112 +1,188 @@
+/* Main container */
 .admin-container {
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
-    /* background-color: #f9f9f9; */
-  }
-  
-  .admin-content {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    width: 80%;
-  }
-  
-  .admin-title {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  
-  .alert-center {
-    margin-bottom: 2rem;
-    padding: 1rem;
-  }
-  
-  .alert-bubble {
-    background-color: #ff4d4f;
-    color: #fff;
-    padding: 1rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .resolve-button {
-    background-color: #ff9800;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .resolve-button:hover {
-    background-color: #e68900;
-  }
-  
-  .service-info {
-    margin-bottom: 2rem;
-  }
-  
-  .service-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-  }
-  
-  .service-table th,
-  .service-table td {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
-  
-  .highlight {
-    background-color: #ffe5e5;
-    color: #ff4d4f;
-  }
-  
-  .notes-submit-cell {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .notes-submit-cell input[type="text"] {
-    width: 70%;
-    padding: 0.4rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  .submit-button {
-    background-color: #007bff;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .add-service-button, .configure-button {
-    background-color: #28a745;
-    color: white;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .add-service-button:hover, .configure-button:hover {
-    background-color: #218838;
-  }
-  
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  /* background-color: #f2f2f2; */
+}
+
+/* Content box */
+.admin-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  position: relative;
+}
+
+/* Title */
+.admin-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  position: relative;
+}
+
+/* Alert center and data anomalies sections */
+.alert-center,
+.data-anomalies {
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+/* Alert and anomaly bubbles */
+.alert-bubble,
+.anomaly-bubble {
+  background-color: #ff4d4f;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Icon next to the alerts */
+.alert-bubble::before,
+.anomaly-bubble::before {
+  content: url('https://img.icons8.com/ios/50/ffffff/error.png'); /* You can replace with any icon URL */
+  margin-right: 10px;
+}
+
+/* Resolve button */
+.resolve-button {
+  background-color: #ff9800;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.resolve-button:hover {
+  background-color: #e68900;
+  transform: scale(1.05);
+}
+
+/* Service information section */
+.service-info {
+  margin-bottom: 2rem;
+}
+
+.service-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.service-table th,
+.service-table td {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.service-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.service-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.service-table tr:hover {
+  background-color: #ddd;
+}
+
+.highlight {
+  background-color: #ffe5e5;
+  color: #ff4d4f;
+}
+
+/* Input and buttons for adding service info */
+.notes-submit-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notes-submit-cell input[type="text"] {
+  width: 70%;
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Add service button */
+.add-service-button,
+.configure-button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-service-button:hover,
+.configure-button:hover {
+  background-color: #218838;
+}
+
+/* New Data Anomalies Section */
+.data-anomalies {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.data-anomalies h2 {
+  font-size: 1.8rem;
+  color: #721c24;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Data Anomaly Bubbles */
+.anomaly-bubble {
+  background-color: #f8d7da;
+  color: #721c24;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.anomaly-bubble p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Icon for anomalies */
+.anomaly-bubble::before {
+  content: url('https://img.icons8.com/ios/50/721c24/warning.png');
+  margin-right: 10px;
+}

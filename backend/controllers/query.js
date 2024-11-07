@@ -35,6 +35,10 @@ queryRouter.post("/sendData", (req, res) => {
     const client = new InfluxDB({ url, token });
     const writeApi = client.getWriteApi(org, bucket, 'ns');
     let jsonString = req.body;
+    let jsonobject =JSON.parse(jsonString);
+    console.log("Received a raw JSON string ", jsonString);
+    console.log("Received a raw JSON string ", jsonobject);
+
     let measurement = jsonString.measurement;
     let tagKey = jsonString.tag_key;
     let tagValue = jsonString.tag_value;

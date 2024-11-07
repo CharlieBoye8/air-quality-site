@@ -1,0 +1,129 @@
+[
+    {
+      "sensor_id": "1",
+      "location": "West Building",
+      "measurements": [
+        {
+          "type": "PM2.5",
+          "data": [
+            { "value": 13.0, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 14.5, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 12.9, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 11.8, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ-3",
+          "data": [
+            { "value": 0.8, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 1.0, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 1.1, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 0.9, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ-7",
+          "data": [
+            { "value": 47, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 50, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 48, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 49, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ135",
+          "data": [
+            { "value": 89, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 85, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 87, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 86, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        }
+      ]
+    },
+    {
+      "sensor_id": "2",
+      "location": "Gettysburger",
+      "measurements": [
+        {
+          "type": "PM2.5",
+          "data": [
+            { "value": 14.3, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 15.7, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 14.1, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 13.8, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ-3",
+          "data": [
+            { "value": 0.7, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 0.9, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 1.0, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 0.8, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ-7",
+          "data": [
+            { "value": 45, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 49, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 46, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 47, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ135",
+          "data": [
+            { "value": 87, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 82, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 85, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 84, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        }
+      ]
+    },
+    {
+      "sensor_id": "3",
+      "location": "Gettysburg Hotel",
+      "measurements": [
+        {
+          "type": "PM2.5",
+          "data": [
+            { "value": 12.0, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 13.8, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 12.7, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 12.3, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ-3",
+          "data": [
+            { "value": 0.6, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 0.8, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 0.9, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 0.7, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ-7",
+          "data": [
+            { "value": 42, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 44, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 43, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 45, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        },
+        {
+          "type": "MQ135",
+          "data": [
+            { "value": 91, "timestamp": "2023-10-23T14:00:00Z" },
+            { "value": 89, "timestamp": "2023-10-23T14:01:00Z" },
+            { "value": 90, "timestamp": "2023-10-23T14:02:00Z" },
+            { "value": 88, "timestamp": "2023-10-23T14:03:00Z" }
+          ]
+        }
+      ]
+    }
+  ]
+  

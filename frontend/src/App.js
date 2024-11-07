@@ -8,7 +8,8 @@ import Compare from './components/Compare';
 import AboutUs from './components/AboutUs';
 import Login from './components/Login';
 import Stats from './components/Stats';
-import Admin from './components/Admin'; // Import Admin component
+import Admin from './components/Admin';
+import LearnMore from './components/LearnMore';
 // import TryIt from './components/TryIt';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/map" element={<Map />} />
           <Route path="/compare" element={<Compare />} />
+          <Route path="/learn-more" element={<LearnMore />} />
           <Route 
             path="/login" 
             element={<Login setIsLoggedIn={setIsLoggedIn} />} // Pass the function to update login state
