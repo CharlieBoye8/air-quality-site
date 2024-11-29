@@ -64,14 +64,14 @@ const AboutUs = () => {
             <div className="member-info">
               <div>Dan Angelillo</div>
             </div>
-            <p>Networking Specialist</p>
+            <p>Server Specialist</p>
           </div>
           <div className="team-member">
             <img className="team-member-img" src={ConnorImage} alt="Connor Whitlow" />
             <div className="member-info">
               <div>Connor Whitlow</div>
             </div>
-            <p>Community Outreach</p> 
+            <p>Project Manager</p> 
           </div>
         </div>
         <div className="team-members">
@@ -80,7 +80,7 @@ const AboutUs = () => {
             <div className="member-info">
               <div>Barry Tang</div>
             </div>
-            <p>Environmental Analyst</p>
+            <p>Sensor Specialist</p>
           </div>
           <div className="team-member">
             <img className="team-member-img" src={JoeImage} alt="Joe Hillesland" />
@@ -94,7 +94,7 @@ const AboutUs = () => {
             <div className="member-info">
               <div>Spencer Hagan</div>
             </div>
-            <p>Graphic Designer</p>
+            <p>Endpoint Specialist</p>
           </div>
         </div>
       </div>
