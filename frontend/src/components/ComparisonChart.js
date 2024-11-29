@@ -4,9 +4,9 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const ComparisonChart = ({ location1Data, location2Data, location1Label, location2Label }) => {
+const ComparisonChart = ({ location1Data, location2Data, location1Label, location2Label, labels }) => {
   const data = {
-    labels: ['Time 1', 'Time 2', 'Time 3', 'Time 4'], // Replace with actual times
+    labels: labels, // Use actual timestamps as labels
     datasets: [
       {
         label: location1Label || 'Location 1',
@@ -23,9 +23,21 @@ const ComparisonChart = ({ location1Data, location2Data, location1Label, locatio
     ],
   };
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { mode: 'index', intersect: false },
+    },
+    scales: {
+      x: { title: { display: true, text: 'Timestamp' } },
+      y: { title: { display: true, text: 'Value' } },
+    },
+  };
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', width: '100%', height: '400px' }}>
-      <Line data={data} />
+    <div style={{ width: '100vh', height: 'auto' }}>
+      <Line data={data} options={options} />
     </div>
   );
 };

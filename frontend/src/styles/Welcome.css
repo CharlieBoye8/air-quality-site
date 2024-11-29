@@ -1,49 +1,61 @@
+/* General Reset and Styling */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: "Poppins", sans-serif;
   background: linear-gradient(to bottom, #74ebd5 0%, #acb6e5 100%);
-  background-attachment: fixed; /* Ensures background stays in place on scroll */
-  background-size: cover; /* Fills entire viewport */
+  background-attachment: fixed; /* Background stays in place on scroll */
+  background-size: cover; /* Fills the entire viewport */
   color: #333;
-  overflow-x: hidden; /* Prevents horizontal scroll */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
 }
 
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh; /* Ensures full height in main container */
-}
-
+/* Hero section */
 .hero-section {
-  width: 100%;
-  padding: 20px;
-  color: #fff;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  min-height: 100vh; /* Full viewport height for hero */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
+  width: 100%; /* Full width of the viewport */
+  padding: 20px; /* Add padding */
+  color: #fff; /* Text color */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  box-sizing: border-box; /* Includes padding in width/height */
+  min-height: calc(100vh - 100px); /* Subtract navbar height from 100vh */
+  overflow: hidden; /* Prevent overflow during animation */
+  position: relative; /* Positioning for animated elements */
 }
 
+/* Hero section animation */
+.hero-section {
+  animation: fadeIn 2s ease forwards;
+}
+
+/* Hero section heading */
 .hero-section h1 {
   font-size: 3.5rem;
   margin-bottom: 20px;
   color: #fff;
+  transform: translateY(50px); /* Initial position for animation */
+  opacity: 0; /* Initial state */
+  animation: fadeSlideIn 1.5s ease forwards; /* Animate both opacity and position */
+  animation-delay: 0.5s; /* Delay for staged appearance */
 }
 
+/* Hero section paragraph */
 .hero-section p {
   font-size: 1.5rem;
   margin-bottom: 30px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  transform: translateY(50px); /* Initial position for animation */
+  opacity: 0; /* Initial state */
+  animation: fadeSlideIn 1.5s ease forwards;
+  animation-delay: 1s; /* Slightly delayed after the heading */
 }
 
+/* Call-to-action button */
 .cta-button {
   padding: 15px 40px;
   background-color: #ffffff;
@@ -53,8 +65,10 @@ html, body {
   font-weight: bold;
   cursor: pointer;
   border: none;
-  transition: background-color 0.3s, color 0.3s;
-  animation: fadeIn 2.5s ease-in-out;
+  transform: translateY(50px); /* Initial position for animation */
+  opacity: 0; /* Initial state */
+  animation: fadeSlideIn 1.5s ease forwards;
+  animation-delay: 1.5s; /* Staged animation */
 }
 
 .cta-button:hover {
@@ -62,6 +76,19 @@ html, body {
   color: #fff;
 }
 
+/* Fade-in animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px); /* Start off below its final position */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Move into final position */
+  }
+}
+
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .hero-section h1 {
     font-size: 2.5rem;
@@ -74,19 +101,4 @@ html, body {
   .hero-section {
     padding: 10px;
   }
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-section {
-  opacity: 0;
-  animation: fadeIn 2s ease forwards;
 }

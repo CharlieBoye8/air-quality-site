@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import queryService from '../services/queryService';
 import '../styles/Stats.css';
+
+const sensorTypeMapping = {
+    'PM2.5': { type: "Particulate Matter (PM2.5)", unit: "µg/m³" },
+    'MQ-3': { type: "Alcohol", unit: "ppm" },
+    'MQ-7': { type: "Carbon Monoxide (CO)", unit: "ppm" },
+    MQ135: { type: "Air Quality (NH3, CO, CO2)", unit: "ppm" },
+};
 
 const Stats = () => {
     const [data, setData] = useState([]);
@@ -10,23 +17,113 @@ const Stats = () => {
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedRange, setSelectedRange] = useState('');
     const [filteredData, setFilteredData] = useState([]);
-
-    const sensorTypeMapping = {
-        "PM2.5": { type: "Particulate Matter (PM2.5)", unit: "µg/m³" },
-        "MQ-3": { type: "Alcohol", unit: "ppm" },
-        "MQ-7": { type: "Carbon Monoxide (CO)", unit: "ppm" },
-        "MQ135": { type: "Air Quality (NH3, CO, CO2)", unit: "ppm" }
-    };
+    const [summary, setSummary] = useState({});
 
     const fetchData = async () => {
-        const res = await queryService.fetchAllData();
-        setData(res.data);
+        try {
+            const res = await queryService.fetchAllData();
+            setData(res.data);
 
-        const uniqueLocations = [...new Set(res.data.map(row => row.location))];
-        setLocations(uniqueLocations);
+            const uniqueLocations = [...new Set(res.data.map((row) => row.location))];
+            const uniqueYears = [...new Set(res.data.map((row) => new Date(row._time).getFullYear()))];
+            setLocations(uniqueLocations);
+            setYears(uniqueYears.sort((a, b) => a - b));
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
 
-        const uniqueYears = [...new Set(res.data.map(row => new Date(row._time).getFullYear()))];
-        setYears(uniqueYears.sort((a, b) => a - b));
+    const applyFilters = useCallback(() => {
+        const filtered = data.filter((row) => {
+            const rowDate = new Date(row._time);
+            const rowYear = rowDate.getFullYear();
+
+            const rangeFilter = () => {
+                const today = new Date();
+                if (selectedRange === 'last30Days') {
+                    const last30Days = new Date();
+                    last30Days.setDate(today.getDate() - 30);
+                    return rowDate >= last30Days;
+                } else if (selectedRange === 'last7Days') {
+                    const last7Days = new Date();
+                    last7Days.setDate(today.getDate() - 7);
+                    return rowDate >= last7Days;
+                } else if (selectedRange === 'today') {
+                    return rowDate.toDateString() === today.toDateString();
+                }
+                return true;
+            };
+
+            return (
+                rangeFilter() &&
+                (!selectedLocation || row.location === selectedLocation) &&
+                (!selectedYear || rowYear === parseInt(selectedYear, 10))
+            );
+        });
+
+        setFilteredData(filtered);
+    }, [data, selectedLocation, selectedYear, selectedRange]);
+
+    const calculateSummary = useCallback((currentData) => {
+        if (!currentData.length) {
+            setSummary({});
+            return;
+        }
+
+        const summaryData = {};
+        currentData.forEach((row) => {
+            const { _field, _value } = row;
+
+            if (!summaryData[_field]) {
+                summaryData[_field] = {
+                    type: sensorTypeMapping[_field]?.type || _field,
+                    current: _value,
+                    trend: 0,
+                    color: 'black',
+                };
+            }
+        });
+
+        Object.keys(summaryData).forEach((key) => {
+            const historicalValues = data
+                .filter((row) => row._field === key)
+                .map((row) => row._value);
+
+            const avgHistoricalValue =
+                historicalValues.reduce((acc, val) => acc + val, 0) / historicalValues.length || 0;
+            const currentValue = summaryData[key].current;
+            const trend = Math.round((currentValue - avgHistoricalValue) * 100) / 100;
+
+            summaryData[key].trend = trend;
+            summaryData[key].color = trend > 0 ? 'red' : trend < 0 ? 'green' : 'black';
+        });
+
+        setSummary(summaryData);
+    }, [data]);
+
+    const handleDownloadCSV = () => {
+        if (!filteredData.length) {
+            alert("No data available to download.");
+            return;
+        }
+
+        const headers = ["Date", "Location", "Sensor Type", "Value"];
+        const rows = filteredData.map((row) => [
+            new Date(row._time).toLocaleString(),
+            row.location,
+            sensorTypeMapping[row._field]?.type || row._field,
+            `${row._value} ${sensorTypeMapping[row._field]?.unit || ''}`,
+        ]);
+
+        const csvContent = [headers, ...rows]
+            .map((row) => row.map((item) => `"${item}"`).join(","))
+            .join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "air_quality_data.csv";
+        link.click();
     };
 
     useEffect(() => {
@@ -34,71 +131,12 @@ const Stats = () => {
     }, []);
 
     useEffect(() => {
-        const filtered = data.filter(row => {
-            const rowDate = new Date(row._time);
-            const rowYear = rowDate.getFullYear();
+        applyFilters();
+    }, [data, selectedLocation, selectedYear, selectedRange, applyFilters]);
 
-            const rangeFilter = () => {
-                const today = new Date();
-                switch (selectedRange) {
-                    case 'last30Days':
-                        const last30Days = new Date();
-                        last30Days.setDate(today.getDate() - 30);
-                        return rowDate >= last30Days;
-                    case 'last6Months':
-                        const last6Months = new Date();
-                        last6Months.setMonth(today.getMonth() - 6);
-                        return rowDate >= last6Months;
-                    case 'today':
-                        return rowDate.toDateString() === today.toDateString();
-                    default:
-                        return true;
-                }
-            };
-
-            return rangeFilter() &&
-                   (!selectedLocation || row.location === selectedLocation) &&
-                   (!selectedYear || rowYear === parseInt(selectedYear, 10));
-        });
-        setFilteredData(filtered);
-    }, [data, selectedLocation, selectedYear, selectedRange]);
-
-    const groupedData = filteredData.reduce((acc, row) => {
-        const location = row.location;
-        const time = new Date(row._time).toLocaleString();
-
-        if (!acc[location]) acc[location] = {};
-        if (!acc[location][time]) acc[location][time] = [];
-        
-        acc[location][time].push(row);
-        return acc;
-    }, {});
-
-    const downloadCSV = () => {
-        const headers = ['Time', 'Sensor ID', 'Measurement', 'Value'];
-        const rows = [];
-
-        filteredData.forEach(row => {
-            const { type, unit } = sensorTypeMapping[row._field] || { type: row._field, unit: '' };
-            rows.push([
-                new Date(row._time).toLocaleString(),
-                row.sensor_id,
-                type,
-                `${row._value} ${unit}`
-            ]);
-        });
-
-        const csvContent = [
-            headers.join(','), 
-            ...rows.map(row => row.join(','))
-        ].join('\n');
-
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.setAttribute('download', `air_quality_data_${selectedLocation || 'all'}_${selectedYear || 'all'}.csv`);
-        link.click();
-    };
+    useEffect(() => {
+        calculateSummary(filteredData);
+    }, [filteredData, calculateSummary]);
 
     return (
         <div className="stats-container">
@@ -108,23 +146,17 @@ const Stats = () => {
                 <div className="filters">
                     <label>
                         Location:
-                        <select 
-                            value={selectedLocation} 
-                            onChange={(e) => setSelectedLocation(e.target.value)}
-                        >
+                        <select value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}>
                             <option value="">All Locations</option>
                             {locations.map((loc, index) => (
                                 <option key={index} value={loc}>{loc}</option>
                             ))}
                         </select>
                     </label>
-                    
+
                     <label>
                         Year:
-                        <select 
-                            value={selectedYear} 
-                            onChange={(e) => setSelectedYear(e.target.value)}
-                        >
+                        <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                             <option value="">All Years</option>
                             {years.map((year, index) => (
                                 <option key={index} value={year}>{year}</option>
@@ -134,57 +166,64 @@ const Stats = () => {
 
                     <label>
                         Date Range:
-                        <select 
-                            value={selectedRange} 
-                            onChange={(e) => setSelectedRange(e.target.value)}
-                        >
+                        <select value={selectedRange} onChange={(e) => setSelectedRange(e.target.value)}>
                             <option value="">All Time</option>
                             <option value="last30Days">Last 30 Days</option>
-                            <option value="last6Months">Last 6 Months</option>
+                            <option value="last7Days">Last 7 Days</option>
                             <option value="today">Today</option>
                         </select>
                     </label>
                 </div>
 
-                <button onClick={downloadCSV} className="download-csv">
-                    Download CSV
-                </button>
+                <button className="download-csv" onClick={handleDownloadCSV}>Download CSV</button>
             </div>
 
-            {Object.keys(groupedData).map((location) => (
-                <div key={location} className="location-table">
-                    <h2>{location}</h2>
-                    <table className="stats-table">
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Sensor ID</th>
-                                <th>Measurement</th>
-                                <th>Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {Object.keys(groupedData[location]).map((time) =>
-                                groupedData[location][time].map((row, index) => {
-                                    const { type, unit } = sensorTypeMapping[row._field] || { type: row._field, unit: '' };
-                                    return (
-                                        <tr key={index}>
-                                            {index === 0 && (
-                                                <td rowSpan={groupedData[location][time].length}>
-                                                    {time}
-                                                </td>
-                                            )}
-                                            <td>{row.sensor_id}</td>
-                                            <td>{type}</td>
-                                            <td>{`${row._value} ${unit}`}</td>
-                                        </tr>
-                                    );
-                                })
-                            )}
-                        </tbody>
-                    </table>
+            <div className="summary-section">
+                <h2>Data Summary</h2>
+                <div className="summary-grid">
+                    {Object.keys(summary).length > 0 ? (
+                        Object.keys(summary).map((key, index) => {
+                            const { type, current, trend, color } = summary[key];
+                            return (
+                                <div key={index} className="summary-item">
+                                    <h3>{type}</h3>
+                                    <p>Value: {current}</p>
+                                    <p style={{ color }}>Trend: {trend > 0 ? `↑${trend}` : trend < 0 ? `↓${trend}` : '-'}</p>
+                                </div>
+                            );
+                        })
+                    ) : (
+                        <p>No data available for the selected filters.</p>
+                    )}
                 </div>
-            ))}
+            </div>
+
+            <table className="stats-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Sensor Type</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredData.length > 0 ? (
+                        filteredData.map((row, index) => (
+                            <tr key={index}>
+                                <td>{new Date(row._time).toLocaleString()}</td>
+                                <td>{row.location}</td>
+                                <td>{sensorTypeMapping[row._field]?.type || row._field}</td>
+                                <td>{row._value} {sensorTypeMapping[row._field]?.unit || ''}</td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4">No data available for the selected filters.</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
         </div>
     );
 };

@@ -1,78 +1,96 @@
-  .stats {
-    text-align: center;
-    padding: 2rem;
-    background-color: #f9f9f9;
+.stats {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.stats h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.selections-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.selection-panel {
+  flex: 1;
+  max-width: 20%;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.center-panel {
+  flex: 2;
+  max-width: 40%;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.selection-panel h3,
+.center-panel h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.selection-panel select,
+.center-panel select {
+  width: 90%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.toggle-arrow {
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.graph-placeholder {
+  background-color: #e9ecef;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  color: #666;
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .selections-container {
+    flex-direction: column;
   }
 
-  .stats h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-
-  .locations {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 1rem;
-  }
-
-  .location-picker {
-    width: 20%; 
-    background-color: #f0f0f0;
-    padding: 1.5rem;
-    border-radius: 10px;
-    text-align: center;
-  }
-
-  .location-picker h3 {
+  .selection-panel,
+  .center-panel {
+    max-width: 100%;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: #555;
   }
-
-  .location-picker select {
-    width: 90%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  .compare-btn {
-    margin-top: 2rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-
-  .graph-placeholder {
-    margin-top: 2rem;
-    background-color: #e9ecef;
-    padding: 1rem; 
-    border-radius: 10px;
-    font-size: 1.25rem;
-    color: #666;
-    min-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .locations {
-      flex-direction: column; 
-    }
-    
-    .location-picker {
-      width: 80%;
-      margin: 0 auto;
-    }
-
-    .graph-placeholder {
-      width: 90%;
-    }
-  }
+}

@@ -2,7 +2,7 @@ const fs = require('fs');
 const { InfluxDB, Point } = require('@influxdata/influxdb-client');
 require('dotenv').config();
 
-const jsonData = JSON.parse(fs.readFileSync('data2023.json'));
+const jsonData = JSON.parse(fs.readFileSync('Bigdata.json'));
 
 const influx = new InfluxDB({
     url: process.env.INFLUXDB_URL,
