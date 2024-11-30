@@ -35,38 +35,42 @@ queryRouter.post("/sendData", (req, res) => {
     const client = new InfluxDB({ url, token });
     const writeApi = client.getWriteApi(org, bucket, 'ns');
     let jsonString = req.body;
-    let jsonobject =JSON.parse(jsonString);
-    console.log("Received a raw JSON string ", jsonString);
-    console.log("Received a raw JSON string ", jsonobject);
 
-    let measurement = jsonString.measurement;
-    let tagKey = jsonString.tag_key;
-    let tagValue = jsonString.tag_value;
-    let field_key = jsonString.field_key;
-    let field_value = parseFloat(jsonString.field_value);
-    console.log("Received a raw JSON string ", jsonString);
-    
-    if (isNaN(field_value)) {
-        console.error("Field value is not a valid number.");
-        return res.status(400).json({ status: "error", message: "Invalid field value received." });
-    }
+    console.log("Received JSON string:", jsonString);
 
+    let measurement = jsonString.measurement || "default_measurement"; // Provide a fallback measurement
+    let tagKey = jsonString.tag_key || "default_tag";
+    let tagValue = jsonString.tag_value || "default_value";
+
+    // Iterate through each field in the JSON to write multiple fields
     try {
-        const point = new Point(measurement)
-            .tag(tagKey, tagValue)
-            .floatField(field_key, field_value);
-        writeApi.writePoint(point);
-        writeApi.close().then(() => {
-            console.log('Data written successfully!');
-        }).catch(e => {
-            console.error(e);
-        });
+        const point = new Point(measurement).tag(tagKey, tagValue);
 
-        res.status(200).json({ status: "success", message: "JSON parsed successfully!" });
+        for (const [key, value] of Object.entries(jsonString)) {
+            if (typeof value === "number") {
+                point.floatField(key, value);
+            }
+            else {
+                point.stringField(key, String(value)); 
+            }
+        }
+
+        writeApi.writePoint(point);
+        writeApi
+            .close()
+            .then(() => {
+                console.log("Data written successfully!");
+                res.status(200).json({ status: "success", message: "Data written successfully!" });
+            })
+            .catch((e) => {
+                console.error("Error closing write API:", e);
+                res.status(500).json({ status: "error", message: "Error writing data to InfluxDB." });
+            });
     } catch (error) {
-        console.log("Invalid JSON String ", error.message);
-        res.status(400).json({ status: "error", message: "Invalid JSON string received." });
+        console.error("Error inserting data:", error.message);
+        res.status(400).json({ status: "error", message: "Error parsing or writing data." });
     }
 });
+
 
 module.exports = queryRouter;
