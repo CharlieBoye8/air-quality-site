@@ -31,7 +31,7 @@ Frontend
         - Map.js (82)
         - Navbar.js (53)
         - Stats.js (224)
-        - TryIt.js (TBD-76)
+        - TryIt.js (70)
         - Welcome.js (35)
     {1093}
     Styles
@@ -46,7 +46,7 @@ Frontend
         - TryIt.css (175)
         - Welcome.css (101)
     {1055}
-{2194 (TBD-251)}
+{2439}
 
 Binh Tran:
 Backend
@@ -62,6 +62,6 @@ Frontend
 {45}
 
 Lines Written
-Charlie:    3266 (TBD-250)(2322 written with 944 data lines generated)
+Charlie:    3383 (2439 written with 944 data lines generated)
 Binh:       155
 Dan:        0 :(
