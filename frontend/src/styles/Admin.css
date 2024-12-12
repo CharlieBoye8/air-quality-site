@@ -1,12 +1,13 @@
-/* Main container */
+/**
+* Admin page styles
+* By: Charlie Boye
+*/
 .admin-container {
   display: flex;
   justify-content: center;
   padding: 2rem;
-  /* background-color: #f2f2f2; */
 }
 
-/* Content box */
 .admin-content {
   background-color: #fff;
   padding: 2rem;
@@ -16,7 +17,6 @@
   position: relative;
 }
 
-/* Title */
 .admin-title {
   font-size: 2.5rem;
   text-align: center;
@@ -25,14 +25,12 @@
   position: relative;
 }
 
-/* Alert center and data anomalies sections */
 .alert-center,
 .data-anomalies {
   margin-bottom: 2rem;
   padding: 1rem;
 }
 
-/* Alert and anomaly bubbles */
 .alert-bubble,
 .anomaly-bubble {
   background-color: #ff4d4f;
@@ -46,14 +44,12 @@
   position: relative;
 }
 
-/* Icon next to the alerts */
 .alert-bubble::before,
 .anomaly-bubble::before {
-  content: url('https://img.icons8.com/ios/50/ffffff/error.png'); /* You can replace with any icon URL */
+  content: url('https://img.icons8.com/ios/50/ffffff/error.png');
   margin-right: 10px;
 }
 
-/* Resolve button */
 .resolve-button {
   background-color: #ff9800;
   color: #fff;
@@ -69,7 +65,6 @@
   transform: scale(1.05);
 }
 
-/* Service information section */
 .service-info {
   margin-bottom: 2rem;
 }
@@ -107,7 +102,6 @@
   color: #ff4d4f;
 }
 
-/* Input and buttons for adding service info */
 .notes-submit-cell {
   display: flex;
   align-items: center;
@@ -135,7 +129,6 @@
   background-color: #0056b3;
 }
 
-/* Add service button */
 .add-service-button,
 .configure-button {
   background-color: #28a745;
@@ -152,7 +145,6 @@
   background-color: #218838;
 }
 
-/* New Data Anomalies Section */
 .data-anomalies {
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
@@ -167,7 +159,6 @@
   margin-bottom: 10px;
 }
 
-/* Data Anomaly Bubbles */
 .anomaly-bubble {
   background-color: #f8d7da;
   color: #721c24;
@@ -181,7 +172,6 @@
   font-size: 14px;
 }
 
-/* Icon for anomalies */
 .anomaly-bubble::before {
   content: url('https://img.icons8.com/ios/50/721c24/warning.png');
   margin-right: 10px;

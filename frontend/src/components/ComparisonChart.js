@@ -1,3 +1,7 @@
+/**
+ * @file A component that displays a comparison chart of two locations.
+ * By: Charlie Boye
+ */
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
@@ -6,7 +10,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 const ComparisonChart = ({ location1Data, location2Data, location1Label, location2Label, labels }) => {
   const data = {
-    labels: labels, // Use actual timestamps as labels
+    labels: labels,
     datasets: [
       {
         label: location1Label || 'Location 1',

@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Air Quality Monitoring Website Setup Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This guide provides step-by-step instructions for setting up the Air Quality Monitoring Website project. Follow the steps below to install all required tools and dependencies, and to configure the project on your local machine.
 
-## Available Scripts
+## System Requirements
 
-In the project directory, you can run:
+### For Windows:
+- Windows 10 or later
+- Minimum 4GB RAM (8GB recommended)
+- 10GB of free disk space
+- Stable internet connection
 
-### `npm start`
+### For Mac:
+- macOS Catalina (10.15) or later
+- Minimum 4GB RAM (8GB recommended)
+- 10GB of free disk space
+- Stable internet connection
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Visual Studio Code
+1. Download and install [Visual Studio Code](https://code.visualstudio.com/).
+2. Install the following recommended extensions:
+   - ESLint
+   - Prettier - Code Formatter
+   - Material Icon Theme
 
-### `npm test`
+### Node.js
+1. Download and install the LTS version of [Node.js](https://nodejs.org/).
+2. Verify the installation:
+   ```bash
+   node -v
+   npm -v
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Git
+1. Ensure Git is installed on your system. Verify with:
+   ```bash
+   git --version
+   ```
 
-### `npm run build`
+### InfluxDB
+1. Download and install [InfluxDB](https://www.influxdata.com/).
+2. Start the InfluxDB service and access its UI at `http://localhost:8086`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Cloning the Project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Open a terminal and run the following command to clone the repository:
+   ```bash
+   git clone https://github.com/CharlieBoye8/air-quality-site
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd air-quality-site
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installing Dependencies
 
-### `npm run eject`
+1. Install main project dependencies:
+   ```bash
+   npm install
+   ```
+2. Navigate to the backend directory and install dependencies:
+   ```bash
+   cd backend
+   npm install
+   ```
+3. Navigate to the frontend directory and install dependencies:
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Setting Up Environment Variables
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Create a `.env` file in the root directory of the project.
+2. Add the required variables. Example:
+   ```env
+   REACT_APP_API_URL=http://localhost:8080
+   INFLUXDB_TOKEN=your-token
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Creating a Bucket in InfluxDB
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Open the InfluxDB UI at `http://localhost:8086`.
+2. Navigate to `Data > Buckets`.
+3. Click `Create Bucket` and provide a name for the bucket.
+4. Set retention policies as needed.
 
-## Learn More
+## Running the Project
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Start the backend server:
+   ```bash
+   cd backend
+   npm start
+   ```
+2. Start the frontend server:
+   ```bash
+   cd ../frontend
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## You’re All Set!

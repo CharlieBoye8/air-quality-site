@@ -1,3 +1,8 @@
+/**
+ * Main entry point of the application.
+ * By: Binh Tran
+ */
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -13,7 +18,6 @@ app.use('/api/query',queryRouter);
 app.get("/", (req,res)=>{
     res.json("Hello world");
 });
-
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`[INFO] Express server is running at http://0.0.0.0:${PORT}/`);

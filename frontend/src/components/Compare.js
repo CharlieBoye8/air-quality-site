@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Compare component that allows users to compare air quality data between two locations.
+ * Users can select two locations, a comparison type (e.g. PM2.5, CO, etc.), and a time range to compare data.
+ * By: Charlie Boye
+ */
+
 import React, { useState, useEffect } from 'react';
 import queryService from '../services/queryService';
 import '../styles/Compare.css';
@@ -6,6 +12,7 @@ import ComparisonChart from './ComparisonChart';
 const Compare = () => {
   const [location1, setLocation1] = useState('');
   const [location2, setLocation2] = useState('');
+  const [availableLocations, setAvailableLocations] = useState([]);
   const [location1Data, setLocation1Data] = useState([]);
   const [location2Data, setLocation2Data] = useState([]);
   const [comparisonType, setComparisonType] = useState('PM2.5');
@@ -18,14 +25,20 @@ const Compare = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await queryService.fetchAllData();
-      setData(res.data);
+      try {
+        const res = await queryService.fetchAllData();
+        setData(res.data);
 
-      // Extract years dynamically from data
-      const yearsSet = new Set(
-        res.data.map((row) => new Date(row._time).getFullYear().toString())
-      );
-      setYears([...yearsSet].sort((a, b) => b - a)); // Sort years in descending order
+        const yearsSet = new Set(
+          res.data.map((row) => new Date(row._time).getFullYear().toString())
+        );
+        setYears([...yearsSet].sort((a, b) => b - a)); // Sort years in descending order
+
+        const locationsSet = new Set(res.data.map((row) => row.location));
+        setAvailableLocations([...locationsSet]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
 
     fetchData();
@@ -84,11 +97,8 @@ const Compare = () => {
     setShowSelections(!showSelections);
   };
 
-  // Build the title dynamically based on selected options
   const buildTitle = () => {
     let title = `Comparison of ${comparisonType}`;
-    
-    // Adjust for time range
     if (timeRange === 'Today') {
       title += ` Today`;
     } else if (timeRange === 'Last 7 Days' || timeRange === 'Last 30 Days') {
@@ -100,12 +110,9 @@ const Compare = () => {
     } else if (timeRange === 'Years' && selectedYear) {
       title += ` in ${selectedYear}`;
     }
-
-    // Add locations to the title if they are selected
     if (location1 && location2) {
       title += ` Between ${location1} and ${location2}`;
     }
-
     return title;
   };
 
@@ -129,9 +136,11 @@ const Compare = () => {
             <h3>Location 1</h3>
             <select value={location1} onChange={(e) => setLocation1(e.target.value)}>
               <option value="">Select Location</option>
-              <option value="West Building">West Building</option>
-              <option value="Gettysburg Hotel">Gettysburg Hotel</option>
-              <option value="Gettysburger">Gettysburger</option>
+              {availableLocations.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -148,7 +157,7 @@ const Compare = () => {
               value={timeRange}
               onChange={(e) => {
                 setTimeRange(e.target.value);
-                setSelectedYear(''); // Reset year if switching range
+                setSelectedYear('');
               }}
             >
               <option value="Today">Today</option>
@@ -177,9 +186,11 @@ const Compare = () => {
             <h3>Location 2</h3>
             <select value={location2} onChange={(e) => setLocation2(e.target.value)}>
               <option value="">Select Location</option>
-              <option value="West Building">West Building</option>
-              <option value="Gettysburg Hotel">Gettysburg Hotel</option>
-              <option value="Gettysburger">Gettysburger</option>
+              {availableLocations.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
             </select>
           </div>
         </div>

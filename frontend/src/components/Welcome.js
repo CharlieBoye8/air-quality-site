@@ -1,10 +1,15 @@
+/**
+ * @file Welcome.js is the main page of the website.
+ * By: Charlie Boye
+ */
+
 import React, { useEffect } from 'react';
 import '../styles/Welcome.css';
 import { Link } from 'react-router-dom';
 
 const Welcome = () => {
+  // Styling was being very annoying and I am particular... so I had to do this
   useEffect(() => {
-    // Apply inline styles to prevent scrolling
     document.documentElement.style.overflowY = 'hidden';
     document.body.style.overflowY = 'hidden';
 

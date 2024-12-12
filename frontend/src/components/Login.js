@@ -1,3 +1,7 @@
+/**
+ * @file Login.js is the component for the login page.
+ * By: Charlie Boye
+ */
 import React, { useState } from 'react';
 import '../styles/Login.css';
 
@@ -7,15 +11,15 @@ const Login = ({ setIsLoggedIn }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Replace these with your test account credentials
+        // Replace these with your test account credentials (Eventually stored in secure database)
         const testUsername = 'testUser';
         const testPassword = 'testPass';
 
         if (username === testUsername && password === testPassword) {
-            setIsLoggedIn(true); // Update login status
-            alert('Login successful!'); // Optional: Show success message
+            setIsLoggedIn(true);
+            alert('Login successful!');
         } else {
-            alert('Invalid username or password.'); // Optional: Show error message
+            alert('Invalid username or password.'); 
         }
     };
 

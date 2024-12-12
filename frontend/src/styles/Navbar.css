@@ -1,4 +1,7 @@
-/* Navbar */
+/**
+* Navbar Styles
+* By: Charlie Boye
+*/
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -33,30 +36,29 @@
 }
 
 .nav-links a {
-  color: white !important; /* Force white text color */
-  text-decoration: none !important; /* Force no underline */
+  color: white !important;
+  text-decoration: none !important;
   font-size: 1.1rem;
   font-weight: 500;
   padding: 0.5rem 0;
   transition: color 0.3s ease;
 }
 
-/* Sliding Underline Effect */
 .nav-links a::after {
   content: '';
   display: block;
   height: 2px;
   width: 0;
-  background: #ff9800; /* Underline color */
+  background: #ff9800;
   transition: width 0.3s ease;
   position: absolute;
   left: 50%;
-  bottom: -5px; /* Position underline */
+  bottom: -5px;
   transform: translateX(-50%);
 }
 
 .nav-links a:hover::after {
-  width: 100%; /* Full width on hover */
+  width: 100%;
 }
 
 .login-btn {
@@ -73,7 +75,6 @@
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Bounce Effect on Hover */
 .login-btn:hover {
   animation: bounce 0.3s;
 }
@@ -83,31 +84,30 @@
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-4px); /* Move up */
+    transform: translateY(-4px);
   }
   60% {
-    transform: translateY(-2px); /* Move down */
+    transform: translateY(-2px);
   }
 }
 
 @media (max-width: 768px) {
   .nav-links {
-    flex-direction: column; /* Stack links on smaller screens */
+    flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
 
   .login-btn {
-    padding: 0.5rem 1rem; /* Adjust padding for smaller screens */
+    padding: 0.5rem 1rem;
   }
 }
 
-/* Fade-in Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .nav-links li {
-  animation: fadeIn 0.5s ease forwards; /* Fade in for each nav item */
+  animation: fadeIn 0.5s ease forwards;
 }

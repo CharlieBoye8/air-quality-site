@@ -1,0 +1,67 @@
+CS440 Air Quality Software Group Code Breakdown
+
+Syntax:
+Section
+    - [Filename] (Lines)
+{Section Lines}
+
+Charlie Boye
+Backend
+    - .env (5)
+    - DataGenerator.js (78)
+    - WriteData.js (45)
+    {128}
+    Dummy Data {Generated}
+        - Bigdata.json (560)
+        - data2022.json (128)
+        - data2023.json (128)
+        - data2024.json (128)
+    {944}
+{1072}
+
+Frontend
+    App.js (46)
+    Components
+        - AboutUs.js (158)
+        - Admin.js (147)
+        - Compare.js (216)
+        - ComparisonChart.js (49)
+        - LearnMore.js (69)
+        - Login.js (60)
+        - Map.js (82)
+        - Navbar.js (53)
+        - Stats.js (224)
+        - TryIt.js (TBD-76)
+        - Welcome.js (35)
+    {1093}
+    Styles
+        - AboutUs.css (120)
+        - Admin.css (178)
+        - Compare.css (101)
+        - LearnMore.css (195)
+        - Login.css (83)
+        - Map.css (27)
+        - Navbar.css (113)
+        - Stats.css (137)
+        - TryIt.css (175)
+        - Welcome.css (101)
+    {1055}
+{2194 (TBD-251)}
+
+Binh Tran:
+Backend
+    - query.js (85)
+    - index.js (25)
+{110}
+
+Frontend
+    Components
+        - Stats.js (15+18)
+    Services
+        - queryService.js (12)
+{45}
+
+Lines Written
+Charlie:    3266 (TBD-250)(2322 written with 944 data lines generated)
+Binh:       155
+Dan:        0 :(

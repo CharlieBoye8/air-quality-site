@@ -1,7 +1,13 @@
+/**
+ * @file LearnMore.js is a component that displays information about the air quality monitoring system,
+ * including the types of data collected and the locations of sensors.
+ * By: Charlie Boye
+ */
 import React from 'react';
 import "../styles/LearnMore.css";
 
 const LearnMore = () => {
+  // Placeholders for actual locations and descriptions
   const locations = [
     { name: 'Gettysburg Hotel', description: 'Located in the heart of Gettysburg, this sensor monitors air quality around the bustling town center.' },
     { name: 'Gettysburger', description: 'Monitors air quality near one of the most popular dining spots in Gettysburg, offering insights into the impact of traffic and local activity.' },

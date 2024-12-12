@@ -1,3 +1,8 @@
+/**
+ * This script generates sensor data for three sensors over the past six months.
+ * By Charlie Boye
+ */
+
 const fs = require('fs');
 
 function getRandomValue(min, max) {
@@ -11,15 +16,14 @@ function generateTimestamps(startDate, intervals, intervalUnit) {
   for (let i = 0; i < intervals; i++) {
     timestamps.push(new Date(currentDate).toISOString());
     if (intervalUnit === 'weekly') {
-      currentDate.setDate(currentDate.getDate() + 7); // weekly interval
+      currentDate.setDate(currentDate.getDate() + 7);
     } else if (intervalUnit === 'daily') {
-      currentDate.setDate(currentDate.getDate() + 1); // daily interval
+      currentDate.setDate(currentDate.getDate() + 1);
     }
   }
   return timestamps;
 }
 
-// Generates data for each sensor
 function generateSensorData(sensorId, location) {
   const sixMonthsAgo = new Date();
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
@@ -27,11 +31,9 @@ function generateSensorData(sensorId, location) {
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-  // Generate timestamps for weekly and daily intervals
   const weeklyTimestamps = generateTimestamps(sixMonthsAgo, 5, 'weekly');
   const dailyTimestamps = generateTimestamps(oneWeekAgo, 5, 'daily');
 
-  // Measurement types and value ranges
   const measurementTypes = [
     { type: 'PM2.5', min: 10, max: 20 },
     { type: 'MQ-3', min: 0.5, max: 1.5 },
@@ -63,7 +65,6 @@ function generateSensorData(sensorId, location) {
   };
 }
 
-// Main data generation
 const sensors = [
   { sensorId: 1, location: 'West Building' },
   { sensorId: 2, location: 'Gettysburger' },

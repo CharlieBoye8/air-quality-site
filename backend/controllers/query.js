@@ -1,3 +1,8 @@
+/**
+ * This file contains the routes for querying and sending data to InfluxDB.
+ * By: Binh Tran
+ */
+
 const queryRouter = require("express").Router();
 const { InfluxDB, Point } = require('@influxdata/influxdb-client');
 require('dotenv').config();
@@ -38,20 +43,25 @@ queryRouter.post("/sendData", (req, res) => {
 
     console.log("Received JSON string:", jsonString);
 
-    let measurement = jsonString.measurement || "default_measurement"; // Provide a fallback measurement
+    let measurement = jsonString.measurement || "default_measurement";
     let tagKey = jsonString.tag_key || "default_tag";
     let tagValue = jsonString.tag_value || "default_value";
+    let location = jsonString.location || "Library"; // Provide a fallback location
+    let timestamp = jsonString.timestamp || new Date().toISOString();
 
-    // Iterate through each field in the JSON to write multiple fields
     try {
-        const point = new Point(measurement).tag(tagKey, tagValue);
+        const point = new Point(measurement)
+    .tag(tagKey, tagValue)
+    .tag("location", location)
+    .timestamp(Date.now() * 1e6); 
 
         for (const [key, value] of Object.entries(jsonString)) {
-            if (typeof value === "number") {
-                point.floatField(key, value);
-            }
-            else {
-                point.stringField(key, String(value)); 
+            if (key !== "measurement" && key !== "tag_key" && key !== "tag_value" && key !== "location" && key !== "timestamp") {
+                if (typeof value === "number") {
+                    point.floatField(key, value); 
+                } else {
+                    point.stringField(key, String(value));
+                }
             }
         }
 
@@ -71,6 +81,5 @@ queryRouter.post("/sendData", (req, res) => {
         res.status(400).json({ status: "error", message: "Error parsing or writing data." });
     }
 });
-
 
 module.exports = queryRouter;

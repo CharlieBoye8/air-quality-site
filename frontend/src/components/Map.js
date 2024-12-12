@@ -1,3 +1,8 @@
+/**
+ * @file A React component that displays a map with markers and popups for hard-coded locations.
+ * By: Charlie Boye
+ */
+
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 
@@ -5,7 +10,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 
-// Define multiple locations with unique names and coordinates
+// Hard-coded locations
 const locations = [
   { id: 1, name: 'Gettysburg College', position: [39.8359, -77.2311] },
   { id: 2, name: 'Lincoln Square', position: [39.8309, -77.2316] },

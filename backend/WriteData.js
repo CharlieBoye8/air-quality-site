@@ -1,7 +1,11 @@
+/**
+ * This script reads the JSON data from [FILENAME].json and writes it to InfluxDB.
+ */
 const fs = require('fs');
 const { InfluxDB, Point } = require('@influxdata/influxdb-client');
 require('dotenv').config();
 
+// Change the filename to the JSON file you want to write to InfluxDB
 const jsonData = JSON.parse(fs.readFileSync('Bigdata.json'));
 
 const influx = new InfluxDB({

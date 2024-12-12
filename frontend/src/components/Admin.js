@@ -1,5 +1,11 @@
+/**
+ * @file Admin.js is the React component that renders the Admin page.
+ * By: Charlie Boye
+ */
 import React, { useState, useEffect } from 'react';
 import '../styles/Admin.css';
+import { useMemo } from 'react';
+
 
 const Admin = () => {
   const [alerts, setAlerts] = useState([{ id: 1, module: 'Gettysburg Hotel', message: 'Air quality sensor failure', date: '2024-10-15' }]);
@@ -8,14 +14,13 @@ const Admin = () => {
   const [newService, setNewService] = useState({ module: 'Gettysburg Hotel', date: new Date().toISOString().split('T')[0], notes: '' });
   const [anomalies, setAnomalies] = useState([]);
 
-  // Dummy data for sensor readings
-  const sensorData = [
+
+  const sensorData = useMemo(() => [
     { id: 1, module: 'Gettysburg Hotel', PM25: 120, CO: 5, date: '2024-11-07' },
     { id: 2, module: 'Gettysburger', PM25: 80, CO: 12, date: '2024-11-07' },
     { id: 3, module: 'West Building', PM25: 110, CO: 8, date: '2024-11-07' },
-  ];
-
-  // Check for anomalies based on predefined thresholds
+  ], []);
+  
   useEffect(() => {
     const detectedAnomalies = sensorData.filter((data) => data.PM25 > 100 || data.CO > 10).map((data) => ({
       id: data.id,
@@ -24,7 +29,8 @@ const Admin = () => {
       date: data.date,
     }));
     setAnomalies(detectedAnomalies);
-  }, []);
+  }, [sensorData]);
+  
 
   const handleResolve = (alertId) => {
     const alertToResolve = alerts.find((alert) => alert.id === alertId);

@@ -1,3 +1,7 @@
+/**
+ * @file AboutUs.js is the About Us page component. It contains information about the project and the team members.
+ * By: Charlie Boye
+ */
 import React from "react";
 import { FaTree, FaGlobeAmericas, FaHandsHelping } from "react-icons/fa";
 import "../styles/AboutUs.css";
@@ -71,7 +75,7 @@ const AboutUs = () => {
             <div className="member-info">
               <div>Connor Whitlow</div>
             </div>
-            <p>Project Manager</p> 
+            <p>Gateway Specialist & Module Housing Architect</p> 
           </div>
         </div>
         <div className="team-members">
@@ -87,7 +91,7 @@ const AboutUs = () => {
             <div className="member-info">
               <div>Joe Hillesland</div>
             </div>
-            <p>Research Assistant</p>
+            <p>Documentation Manager</p>
           </div>
           <div className="team-member">
             <img className="team-member-img" src={SpencerImage} alt="Spencer Hagan" />

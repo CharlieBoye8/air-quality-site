@@ -1,3 +1,8 @@
+/**
+ * @file Navbar.js is the navbar component for the website.
+ * By: Charlie Boye
+ */
+
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";

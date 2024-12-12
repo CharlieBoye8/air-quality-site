@@ -1,3 +1,8 @@
+/**
+ * @file App.js is the root component of the application. It contains the routing logic for the application.
+ * By: Charlie Boye
+ */
+
 import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -10,15 +15,15 @@ import Login from './components/Login';
 import Stats from './components/Stats';
 import Admin from './components/Admin';
 import LearnMore from './components/LearnMore';
-// import TryIt from './components/TryIt';
+import TryIt from './components/TryIt';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div className="App">
       <Router>
-        <Navbar isLoggedIn={isLoggedIn} /> {/* Pass the login state to Navbar */}
+        <Navbar isLoggedIn={isLoggedIn} /> 
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -27,10 +32,10 @@ function App() {
           <Route path="/learn-more" element={<LearnMore />} />
           <Route 
             path="/login" 
-            element={<Login setIsLoggedIn={setIsLoggedIn} />} // Pass the function to update login state
+            element={<Login setIsLoggedIn={setIsLoggedIn} />} 
           />
-          <Route path="/admin" element={<Admin />} /> {/* Add route for Admin component */}
-          {/* <Route path="/try-it" element={<TryIt />} /> */}
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/try-it" element={<TryIt />} />
           <Route path="/stats" element={<Stats />} />
         </Routes>
       </Router>
